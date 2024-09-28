@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>一問一答クイズ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .question-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .explanation {
+            margin-top: 10px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>一問一答クイズ</h1>
+    <div class="question-box">
+        <form method="POST">
+            <p>問題: {{ question['question'] }}</p>
+            <label>
+                <input type="radio" name="answer" value="正しい" required> 正しい
+            </label>
+            <label>
+                <input type="radio" name="answer" value="誤り"> 誤り
+            </label>
+            <br><br>
+            <button type="submit">解答する</button>
+        </form>
+    </div>
+
+    {% if result %}
+    <div class="result">
+        あなたの答えは: {{ result }}
+    </div>
+    <div class="explanation">
+        解説: {{ explanation }}
+    </div>
+    {% endif %}
+
+    <hr>
+    <a href="{{ url_for('reset') }}">最初からやり直す</a>
+</body>
+</html>

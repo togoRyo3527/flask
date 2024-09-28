@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>クイズカテゴリ選択</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .button {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 10px auto;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>クイズカテゴリを選択してください</h1>
+        <form action="{{ url_for('select_category') }}" method="POST">
+            <button type="submit" name="category" value="危険選択" class="button">危険選択</button>
+            <button type="submit" name="category" value="約款と法律" class="button">約款と法律</button>
+        </form>
+    </div>
+</body>
+</html>
