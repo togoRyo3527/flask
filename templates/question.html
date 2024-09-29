@@ -22,34 +22,52 @@
             border-top: 1px solid #ddd;
             padding-top: 10px;
         }
+        .button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>一問一答クイズ</h1>
+    <a href="{{ url_for("index") }}"><h1>一問一答クイズ {{ category }}</h1></a>
     <div class="question-box">
-        <form method="POST">
-            <p>問題: {{ question['question'] }}</p>
+        <form method="POST" action="{{ url_for('question') }}">
+            <p>
+                問題: <br>
+                {{ question['question'] }}
+            </p>
+            {% if not show_next %}
             <label>
-                <input type="radio" name="answer" value="正しい" required> 正しい
+                <input type="radio" name="answer" value="1" required> 正しい
             </label>
             <label>
-                <input type="radio" name="answer" value="誤り"> 誤り
+                <input type="radio" name="answer" value="0"> 誤り
             </label>
             <br><br>
             <button type="submit">解答する</button>
+            {% endif %}
         </form>
     </div>
 
     {% if result %}
     <div class="result">
-        あなたの答えは: {{ result }}
+        あなたの答え: {{ user_answer }}<br>
+        {{ result }}
     </div>
     <div class="explanation">
-        解説: {{ explanation }}
+        解説: <br>
+        {{ explanation }}
     </div>
+    {% endif %}
+
+    {% if show_next %}
+    <form method="POST">
+        <button type="submit" name="next" class="button">次の問題</button>
+    </form>
     {% endif %}
 
     <hr>
     <a href="{{ url_for('reset') }}">最初からやり直す</a>
+    <br>
+    <a href="{{ url_for('index') }}">ホームに戻る</a>
 </body>
 </html>

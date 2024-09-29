@@ -9,6 +9,7 @@
     <p>{{ question.question }}</p>
     <p>あなたの答え: {{ result }}</p>
     <p>解説: {{ explanation }}</p>
+    <a href="{{ url_for("question")}}">次</a>
     <a href="{{ url_for('index') }}">ホームに戻る</a>
 </body>
 </html>
