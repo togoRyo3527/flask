@@ -25,14 +25,17 @@
         .button {
             margin-top: 20px;
         }
+        #TRUEorFALSE {
+            color: #ff0000;
+        }
     </style>
 </head>
 <body>
-    <a href="{{ url_for("index") }}"><h1>一問一答クイズ {{ category }}</h1></a>
+    <a href="{{ url_for("index") }}"><h1>生保講座 1問1答 {{ category }}</h1></a>
     <div class="question-box">
         <form method="POST" action="{{ url_for('question') }}">
             <p>
-                問題: <br>
+                <h3>問題: </h3><br>
                 {{ question['question'] }}
             </p>
             {% if not show_next %}
@@ -50,12 +53,12 @@
 
     {% if result %}
     <div class="result">
-        {{ result }} <br>
+        <h2 id="TRUEorFALSE">{{ result }}</h2> <br>
         解答: {{ user_answer }}<br>
         正答: {{ correct_answer }}<br>
     </div>
     <div class="explanation">
-        解説: <br>
+        <h3>解説: </h3><br>
         {{ explanation }}
     </div>
     {% endif %}
