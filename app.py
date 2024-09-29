@@ -106,6 +106,7 @@ def question():
                 "question.html", 
                 category = session['カテゴリ'],
                 user_answer = "正しい" if user_answer == 1 else "誤り",
+                correct_answer = "正しい" if correct_answer == 1 else "誤り",
                 question = question, 
                 result = result, 
                 explanation = explanation, 

@@ -50,8 +50,9 @@
 
     {% if result %}
     <div class="result">
-        あなたの答え: {{ user_answer }}<br>
-        {{ result }}
+        {{ result }} <br>
+        解答: {{ user_answer }}<br>
+        正答: {{ correct_answer }}<br>
     </div>
     <div class="explanation">
         解説: <br>
