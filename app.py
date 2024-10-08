@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import pandas as pd
 import random
+import boto3
+
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # セッション管理用の秘密鍵
+
 
 # グローバル変数として質問データを保持
 questions = []
@@ -24,7 +27,7 @@ def select_category():
     if category == "danger":
         session['カテゴリ'] = '危険選択'
     elif category == "legal":
-        session['カテゴリ'] = '法律と約款'
+        session['カテゴリ'] = '約款と法律'
 
     # 選択に基づいて対応するCSVを読み込み
     if category == "danger":
