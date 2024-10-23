@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import pandas as pd
 import random
-import boto3
-
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # セッション管理用の秘密鍵
@@ -28,12 +26,20 @@ def select_category():
         session['カテゴリ'] = '危険選択'
     elif category == "legal":
         session['カテゴリ'] = '約款と法律'
+    elif category == "product":
+        session['カテゴリ'] = '生命保険商品と営業'
+    elif category == "account":
+        session['カテゴリ'] = '生命保険会計'
 
     # 選択に基づいて対応するCSVを読み込み
     if category == "danger":
-        csv_file = "危険.csv"
+        csv_file = "./data/Danger.csv"
     elif category == "legal":
-        csv_file = "法律.csv"
+        csv_file = "./data/Legal.csv"
+    elif category == "product":
+        csv_file = "./data/Product.csv"
+    elif category == "account":
+        csv_file = "./data/Account.csv"
     else:
         return redirect(url_for('index'))  # 無効なカテゴリの場合はトップに戻る
     
