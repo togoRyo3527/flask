@@ -2,14 +2,46 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>結果表示</title>
+    <title>結果</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .result-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .result {
+            font-weight: bold;
+            font-size: 24px;
+            color: #4CAF50;
+        }
+        .retry {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 20px auto;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .retry:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <h1>結果</h1>
-    <p>{{ question.question }}</p>
-    <p>あなたの答え: {{ result }}</p>
-    <p>解説: {{ explanation }}</p>
-    <a href="{{ url_for("question")}}">次</a>
-    <a href="{{ url_for('index') }}">ホームに戻る</a>
+    <h1>クイズ結果</h1>
+    <div class="result-box">
+        <p class="result">あなたの得点: {{ session['correct_answers'] }} / {{ total }}</p>
+        <p>お疲れさまでした！</p>
+    </div>
+    
+    <a href="{{ url_for('reset') }}" class="retry">最初からやり直す</a>
 </body>
 </html>

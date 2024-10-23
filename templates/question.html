@@ -31,11 +31,11 @@
     </style>
 </head>
 <body>
-    <a href="{{ url_for("reset") }}"><h1>生保講座 1問1答 {{ category }}</h1></a>
+    <a href="{{ url_for("reset") }}"><h1>生保講座 1問1答 {{ question['category'] }}</h1></a>
     <div class="question-box">
-        <form method="POST" action="{{ url_for('question') }}">
+        <form method="POST" action="{{ url_for('answer') }}">
             <p>
-                <h3>問題: </h3><br>
+                <h3>問題 {{ current_question_number }} / 10:</h3><br>
                 {{ question['question'] }}
             </p>
             {% if not show_next %}
@@ -51,21 +51,18 @@
         </form>
     </div>
 
-    {% if result %}
+    {% if show_next %}
     <div class="result">
-        <h2 id="TRUEorFALSE">{{ result }}</h2> <br>
-        解答: {{ user_answer }}<br>
-        正答: {{ correct_answer }}<br>
+        <h2 id="TRUEorFALSE">{{ '正解' if session['user_answer'] == session['correct_answer'] else '不正解' }}</h2> <br>
+        解答: {{ '正しい' if session['user_answer'] == 1 else '誤り' }}<br>
+        正答: {{ '正しい' if session['correct_answer'] == 1 else '誤り' }}<br>
     </div>
     <div class="explanation">
         <h3>解説: </h3><br>
-        {{ explanation }}
+        {{ question['explanation'] }}
     </div>
-    {% endif %}
-
-    {% if show_next %}
-    <form method="POST">
-        <button type="submit" name="next" class="button">次の問題</button>
+    <form method="POST" action="{{ url_for('next_question') }}">
+        <button type="submit" class="button">次の問題</button>
     </form>
     {% endif %}
 
